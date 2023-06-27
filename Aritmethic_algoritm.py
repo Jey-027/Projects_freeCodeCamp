@@ -13,7 +13,6 @@ def prueba(lst, result=False):
     if len(lst) > 5:
         return "Error: Too many problems."    
         
-    
     # iterar la lista pasada como parametro
     for var in lst:
         add = var.find(' ') + 1
@@ -24,8 +23,23 @@ def prueba(lst, result=False):
         cont1 = len(num1)
         cont2 = len(num2)
 
-        
-            # return "Error: Numbers must only contain"
+        # Valida si la cadena tiene alguna cadena o letra
+        try:
+            temp = []
+            temp_signo = [' * ', ' / ']
+            temp.append(int(num1))
+            temp.append(int(num2))
+
+            # Valida los operadores permitidos solo son '+' or '-'
+            if ope in temp_signo:
+                return "Error: Operator must be '+' or '-'. "
+            
+            # Valida si los numeros no son mayores a 4 digitos
+            if len(num1) > 4 or len(num2) > 4:
+                return "Error: Numbers cannot be more than four digits."
+
+        except ValueError:
+            return "Error: Numbers must only contain."
 
         # calcula la cantidad de '-' para trazar la linea de la operacion
         if cont1 == 4 or cont2 == 4:
@@ -64,7 +78,6 @@ def prueba(lst, result=False):
         newlist2.append(num2)
         operator_list.append(temp_ope.rjust(position_list[1]))
 
-     
         # Valida si es suma o resta, realiza la operacion y la guarda en la lista
         if ope == ' + ':
             suma = int(num1) + int(num2)
@@ -73,8 +86,6 @@ def prueba(lst, result=False):
         elif ope == ' - ':
             resta = int(num1) - int(num2)
             result_list.append(str(resta).rjust(position_list[2]))
-
-
 
     # Convierte las listas en cadenas, separadas x 4 espacios
     t1 = '    '.join(newlist)
@@ -97,6 +108,6 @@ def prueba(lst, result=False):
 # print(prueba(["1234 + 6", "3456 - 17", "7890 + 130", "4444 + 1234"], True))
 
 # print(prueba(["1 + 6", "32 - 1", "423 + 3", "4654 + 1", "1 + 1", "54 - 76"]))
-print(prueba(["3a + 62", "43 - 17", "374 + 30", "7445 + 41"], True))
+print(prueba(["3 + 62", "43 - 17", "374 + 30", "7445 + 41"], True))
 # print(prueba(["1 + 675", "23 - 717", "123 + 130", "1236 + 987"], True))
 # print(prueba(["4 + 6234", "56 - 2117", "7890 + 1530", "4444 + 1234"], True))
